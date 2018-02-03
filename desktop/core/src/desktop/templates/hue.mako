@@ -757,6 +757,13 @@ ${ smart_unicode(login_modal(request).content) | n,unicode }
           })
         });
 
+        huePubSub.subscribe('open.editor.query', function (uuid) {
+          self.loadApp('editor');
+          self.getActiveAppViewModel(function (viewModel) {
+            viewModel.openNotebook(uuid);
+          })
+        });
+
         huePubSub.subscribe('resize.form.actions', function () {
           document.styleSheets[0].addRule('.form-actions','width: ' + $('.page-content').width() + 'px');
           if ($('.content-panel:visible').length > 0) {

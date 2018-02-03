@@ -719,6 +719,10 @@ def export_result(request):
       else:
         live_indexing = False
 
+
+      ## TODO
+      ## Add to response query id and sample data
+
       sample = get_api(request, snippet).fetch_result(notebook, snippet, 0, start_over=True)
 
       from indexer.api3 import _index # Will be moved to the lib

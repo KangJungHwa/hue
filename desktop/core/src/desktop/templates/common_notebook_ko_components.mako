@@ -413,11 +413,14 @@ except ImportError, e:
             if (resp.status == 0) {
               if (IS_HUE_4) {
                 $(".modal-backdrop").remove();
-                if (self.saveTarget() == 'hdfs-file' || self.saveTarget() == 'search-index') {
+                if (self.saveTarget() == 'hdfs-file') {
                   $(self.saveResultsModalId).modal('hide');
                   huePubSub.publish('open.link', resp.watch_url);
-                } else {
-                  if (resp.history_uuid) {
+                } else if (self.saveTarget() == 'search-index') {
+                  // pub-sub 
+                  // query id
+                  // sample data + headers
+                } else if (resp.history_uuid) {
                     $(self.saveResultsModalId).modal('hide');
                     huePubSub.publish('notebook.task.submitted', resp.history_uuid);
                   } else if (resp && resp.message) {
